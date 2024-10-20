@@ -60,7 +60,7 @@ try:
                     customer_data[customer_id]['balance'] += transaction_amount
                     transaction_counter += 1
                     total_transaction_amount += transaction_amount
-                if transaction_type == 'withdraw':
+                if transaction_type == 'withdraw':  
                     customer_data[customer_id]['balance'] -= transaction_amount
                     transaction_counter += 1
                     total_transaction_amount += transaction_amount
@@ -80,7 +80,7 @@ try:
         balance = data['balance']
 
         print(f"\nCustomer {customer_id} has a balance of ${balance:,.2f}.")
-        
+
         # Print the transaction history for the customer
         print("Transaction History:")
         for transaction in data['transactions']:
@@ -93,7 +93,8 @@ try:
      print("\nREJECTED RECORDS\n================")
     for record in rejected_records:
         print("REJECTED:", record)
-except FileNotFoundError as e:
+
+except FileNotFoundError as e: # If file does not not found
     print(f"Error: {e}")
-except Exception as e:
+except Exception as e:  # To catch other exceptions.
     print(f"Error: {e}")

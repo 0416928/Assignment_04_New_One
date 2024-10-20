@@ -35,3 +35,7 @@ I added some dollar signs before the amounts and rounded those amounts to 2 deci
 ## Code Modification
 
 Added a breakpoint and checked all the records.
+
+## Code Modification
+
+Added more comments for clarity and makes the code easy to read.
