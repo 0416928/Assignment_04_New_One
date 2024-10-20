@@ -31,3 +31,7 @@ I created a tuple which is contaning the row that is causing the error and then 
 ## Code Modification
 
 I added some dollar signs before the amounts and rounded those amounts to 2 decimal places in proper format.
+
+## Code Modification
+
+Added a breakpoint and checked all the records.
