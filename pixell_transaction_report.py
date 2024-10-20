@@ -66,7 +66,9 @@ try:
                 customer_data[customer_id]['transactions'].append((transaction_amount, transaction_type))
             
             ### COLLECT INVALID RECORDS ###
-            
+            else:
+               value_error = (row[0], row[1], row[2], error_message) 
+               rejected_records.append(value_error)
 
 
     print("PiXELL River Transaction Report\n===============================\n")
