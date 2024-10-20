@@ -24,6 +24,7 @@ try:
 # Opening a file in read mode.
     with open('bank_data.csv', 'r') as csv_file:
         reader = csv.reader(csv_file)
+        next(reader)
         for row in reader:
             # Reset valid record and error message for each iteration
             valid_record = True
@@ -46,20 +47,20 @@ try:
                 transaction_amount = float(row[2])
             except ValueError:
                 valid_record = False
-                error_message += "Non-numeric transaction amount."
+                error_message += " Non-numeric transaction amount."
             if valid_record:
                 # Initialize the customer's account balance if it doesn't already exist
                 if customer_id not in customer_data:
                     customer_data[customer_id] = {'balance': 0, 'transactions': []}
 
                 # Update the customer's account balance based on the transaction type
-                elif transaction_type == 'deposit':
+                if transaction_type == 'deposit':
                     customer_data[customer_id]['balance'] += transaction_amount
-                    transaction_count += 1
+                    transaction_counter += 1
                     total_transaction_amount += transaction_amount
-                elif transaction_type == 'withdrawal':
-                    customer_data[customer_id]['balance'] += transaction_amount
-                    transaction_count += 1
+                if transaction_type == 'withdraw':
+                    customer_data[customer_id]['balance'] -= transaction_amount
+                    transaction_counter += 1
                     total_transaction_amount += transaction_amount
                 
                 # Record  transactions in the customer's transaction history
@@ -76,14 +77,14 @@ try:
     for customer_id, data in customer_data.items():
         balance = data['balance']
 
-        print(f"\nCustomer {customer_id} has a balance of {balance}.")
+        print(f"\nCustomer {customer_id} has a balance of ${balance:,.2f}.")
         # Print the transaction history for the customer
         print("Transaction History:")
         for transaction in data['transactions']:
             amount, type = transaction
-            print(f"\t{type.capitalize()}: {amount}")
+            print(f"\t{type.capitalize()}: ${amount:,.2f}")
 
-    print(f"\nAVERAGE TRANSACTION AMOUNT: {(total_transaction_amount / transaction_counter)}")
+    print(f"\nAVERAGE TRANSACTION AMOUNT: ${(total_transaction_amount / transaction_counter):,.2f}")
 
     print("\nREJECTED RECORDS\n================")
     for record in rejected_records:
