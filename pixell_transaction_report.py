@@ -24,7 +24,9 @@ try:
 # Opening a file in read mode.
     with open('bank_data.csv', 'r') as csv_file:
         reader = csv.reader(csv_file)
-        next(reader)
+
+        next(reader)  # This code will skip the header in rejected records.
+
         for row in reader:
             # Reset valid record and error message for each iteration
             valid_record = True
@@ -78,6 +80,7 @@ try:
         balance = data['balance']
 
         print(f"\nCustomer {customer_id} has a balance of ${balance:,.2f}.")
+        
         # Print the transaction history for the customer
         print("Transaction History:")
         for transaction in data['transactions']:
@@ -86,7 +89,8 @@ try:
 
     print(f"\nAVERAGE TRANSACTION AMOUNT: ${(total_transaction_amount / transaction_counter):,.2f}")
 
-    print("\nREJECTED RECORDS\n================")
+    if valid_record == False:
+     print("\nREJECTED RECORDS\n================")
     for record in rejected_records:
         print("REJECTED:", record)
 except FileNotFoundError as e:

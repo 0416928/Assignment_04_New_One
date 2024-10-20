@@ -27,3 +27,7 @@ I modified validation1 and validation 2 Placeholder and also completed the colle
 ## Code Modification
 
 I created a tuple which is contaning the row that is causing the error and then appended those changes to the rejected_records list.
+
+## Code Modification
+
+I added some dollar signs before the amounts and rounded those amounts to 2 decimal places in proper format.
